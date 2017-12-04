@@ -1,6 +1,7 @@
 import {
   Component, Input, Output, ChangeDetectionStrategy, EventEmitter, ChangeDetectorRef
 } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { AppRepo } from '../app-repo.service';
 
@@ -10,16 +11,19 @@ w._globalRenderCount = w._globalRenderCount || 0;
 const startTime = (new Date()).getTime();
 
 @Component({
-  selector: 'demo-cd-default',
-  templateUrl: './demo-cd-default.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'demo-async',
+  templateUrl: './demo-async.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DemoCdDefaultComponent {
+export class DemoAsyncComponent {
   @Input() public treeLevel: number;
   @Input() public secondTreeLevel: number;
   @Input() public payload: any;
 
-  public internalPayload: number = 0;
+  public internalPayload$: BehaviorSubject<number> = new BehaviorSubject(0);
+  private set internalPayload(v: number) { this.internalPayload$.next(v); }
+  private get internalPayload(): number { return this.internalPayload$.getValue(); }
+
   public window: Window = window;
 
   private _thisRenderCount: number = 0;

@@ -1,6 +1,7 @@
 import {
   Component, Input, Output, ChangeDetectionStrategy, EventEmitter, ChangeDetectorRef
 } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { AppRepo } from '../app-repo.service';
 
@@ -10,16 +11,19 @@ w._globalRenderCount = w._globalRenderCount || 0;
 const startTime = (new Date()).getTime();
 
 @Component({
-  selector: 'demo-cd-detached',
-  templateUrl: './demo-cd-detached.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'demo-sync',
+  templateUrl: './demo-sync.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DemoCdDetachedComponent {
+export class DemoSyncComponent {
   @Input() public treeLevel: number;
   @Input() public secondTreeLevel: number;
   @Input() public payload: any;
 
-  public internalPayload: number = 0;
+  public internalPayload$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public set internalPayload(v: number) { this.internalPayload$.next(v); }
+  public get internalPayload(): number { return this.internalPayload$.getValue(); }
+
   public window: Window = window;
 
   private _thisRenderCount: number = 0;
@@ -33,13 +37,7 @@ export class DemoCdDetachedComponent {
   constructor(
     private repo: AppRepo,
     private cdRef: ChangeDetectorRef,
-  ) {
-    this.cdRef.detach();
-  }
-
-  public ngOnInit() {
-    this.cdRef.detectChanges();
-  }
+  ) { }
 
   public doNothing() {
     console.log("doNothing");

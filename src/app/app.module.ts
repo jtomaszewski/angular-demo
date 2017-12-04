@@ -3,17 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRepo } from './app-repo.service';
-import { DemoCdDefaultComponent } from './demo-cd-default/demo-cd-default.component';
-import { DemoCdOnPushComponent } from './demo-cd-on-push/demo-cd-on-push.component';
-import { DemoCdDetachedComponent } from './demo-cd-detached/demo-cd-detached.component';
+import { DemoSyncComponent } from './demo-sync/demo-sync.component';
+import { DemoAsyncComponent } from './demo-async/demo-async.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoCdDefaultComponent,
-    DemoCdOnPushComponent,
-    DemoCdDetachedComponent
+    DemoSyncComponent,
+    DemoAsyncComponent,
   ],
   imports: [
     BrowserModule

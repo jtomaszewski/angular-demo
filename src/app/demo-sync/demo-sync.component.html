@@ -1,7 +1,9 @@
 <div style="border: 1px solid black; padding: 5px">
-  <strong>demo-cd-on-push</strong>, treeLevel: {{ treeLevel }}<br />
+  <strong>demo-sync</strong>, treeLevel: {{ treeLevel }}<br />
   payload: {{ payload }}<br />
   internalPayload: {{ internalPayload }}<br />
+  internalPayload: {{ internalPayload }}<br />
+  internalPayload x2: {{ internalPayload + internalPayload }}<br />
   time: {{ time }}<br />
   thisRenderCount: {{ thisRenderCount }}<br />
   globalRenderCounts: {{ globalRenderCounts | json }}<br />
@@ -19,25 +21,25 @@
 
   <div style="display: flex">
     <div style="flex: 1">
-      <demo-cd-on-push
+      <demo-sync
         *ngIf="treeLevel > 0"
         [treeLevel]="treeLevel-1"
         [secondTreeLevel]="secondTreeLevel-1"
         [payload]="payload + internalPayload"
         >
-      </demo-cd-on-push>
+      </demo-sync>
     </div>
 
     <div
       *ngIf="secondTreeLevel > 0"
       style="flex: 1">
-      <demo-cd-on-push
+      <demo-sync
         *ngIf="treeLevel > 0"
         [treeLevel]="treeLevel-1"
         [secondTreeLevel]="secondTreeLevel-1"
         [payload]="payload + internalPayload"
         >
-      </demo-cd-on-push>
+      </demo-sync>
     </div>
   </div>
 </div>
