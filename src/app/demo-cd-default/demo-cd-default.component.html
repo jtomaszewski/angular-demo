@@ -4,7 +4,7 @@
   internalPayload: {{ internalPayload }}<br />
   time: {{ time }}<br />
   thisRenderCount: {{ thisRenderCount }}<br />
-  globalRenderCounts: {{ globalRenderCounts || json }}<br />
+  globalRenderCounts: {{ globalRenderCounts | json }}<br />
   window.data: {{ window ? window.data : null }}<br />
 
   <div style="padding: 5px">
