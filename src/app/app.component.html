@@ -1,27 +1,2 @@
-<h1>With/Without async pipe comparison</h1>
-
-<label *ngFor="let option of currentViewOptions">
-  <input type="radio" [checked]="currentView === option" (click)="setCurrentView(option)"> {{ option }}
-</label>
-
-<div *ngIf="currentView === 'sync'">
-  <h2>Synchronous (without async pipe)</h2>
-
-  <demo-sync
-    [treeLevel]="treeLevel"
-    [secondTreeLevel]="secondTreeLevel"
-    [payload]="payload"
-    >
-  </demo-sync>
-</div>
-
-<div *ngIf="currentView === 'async'">
-  <h2>Asynchronous (with async pipe)</h2>
-
-  <demo-async
-    [treeLevel]="treeLevel"
-    [secondTreeLevel]="secondTreeLevel"
-    [payload]="payload"
-    >
-  </demo-async>
-</div>
+<app-input [value]="value" (valueChange)="value = $event">
+</app-input>

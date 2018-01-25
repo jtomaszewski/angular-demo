@@ -7,25 +7,5 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class AppComponent {
-  public currentView: 'sync' | 'async' = 'sync';
-  public currentViewOptions = ['sync', 'async'];
-
-  public treeLevel = 4;
-  public secondTreeLevel = 1;
-  public payload = 0;
-
-  constructor(
-    private cdRef: ChangeDetectorRef,
-  ) {
-    // this.cdRef.detach();
-  }
-
-  ngOnInit() {
-    // this.cdRef.detectChanges();
-  }
-
-  setCurrentView(currentView) {
-    this.currentView = currentView;
-    // this.cdRef.detectChanges();
-  }
+  public value: string = '123 456';
 }
